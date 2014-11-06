@@ -1,7 +1,19 @@
 <div class="container">
-  <% @tweets.each do |tweet| %>
-    <%= tweet.body %>
-    <br>
-    <br>
-  <% end %>
+    <script>
+        $(document).ready(function(){
+           $.ajax({
+            url: "<%= params[:username] %>/refresh",
+            cache: false,
+            success: function(html){
+              $("#results").append(html);
+              $("#modal").addClass('hidden')
+            }
+           });
+            //e.unbind(); //unbind. to stop multiple form submit.
+          });
+    </script>
+     <div id="modal">
+            <img id="loader" src="ajax-loader.gif" />
+     </div>
+      <div id="results"></div>
 </div>
