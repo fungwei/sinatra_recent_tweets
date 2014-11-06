@@ -1,9 +1,3 @@
-class Tweet
-  def initialize(tweet)
-    @tweet = tweet
-  end
-
-  def text
-    @tweet
-  end
+class Tweet < ActiveRecord::Base
+  belongs_to :twitter_user
 end
