@@ -1,0 +1,52 @@
+<div class="container">
+    <script>
+        $(document).ready(function(){
+           $.ajax({
+            url: "<%= params[:username] %>/refresh",
+            cache: false,
+            success: function(html){
+              $("#results").append(html);
+              $("#modal").addClass('hidden')
+            }
+           });
+            //e.unbind(); //unbind. to stop multiple form submit.
+            $("#post_tweet").submit(function(e){
+              $("#modal").removeClass('hidden')
+              var postData = $(this).serializeArray();
+              var formURL = $(this).attr("action");
+              $.ajax(
+              {
+                  url : formURL,
+                  type: "POST",
+                  data : postData,
+                  success:function(result)
+                  {
+                    $("#results").html(result);
+                    $("#modal").addClass('hidden')
+                    //debugger
+                      //data: return data from server
+                  },
+                  error: function(jqXHR, textStatus, errorThrown)
+                  {
+                    //debugger
+                      //if fails
+                  }
+              });
+              e.preventDefault(); //STOP default action
+              e.unbind(); //unbind. to stop multiple form submit.
+            });
+          });
+    </script>
+    <form id="post_tweet" role="form" action="<%= params[:username] %>" method="post">
+  <div class="form-group">
+    <label for="inputTweet">New Tweet</label>
+    <input name="tweet" type="tweet" class="form-control" id="inputTweet" placeholder="Enter Tweet">
+  </div>
+  <button type="submit" class="btn btn-default">Tweet!</button>
+  </form>
+<hr>
+     <div id="modal">
+            <img id="loader" src="ajax-loader.gif" />
+     </div>
+      <div id="results"></div>
+</div>

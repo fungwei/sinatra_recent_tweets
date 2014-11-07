@@ -27,4 +27,8 @@ class TwitterUser < ActiveRecord::Base
     time_diff > 60
   end
 
+  def new_tweet(body)
+    TWITTER_CLIENT.update(body)
+  end
+
 end

@@ -1,0 +1,6 @@
+  <h3><%= params[:username] %>'s Tweets</h3>
+  <% @tweets.each do |tweet| %>
+    <p><%= tweet.body %></p>
+    <br>
+    <br>
+  <% end %>
