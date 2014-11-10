@@ -29,7 +29,7 @@
       <a href="/tweets/<%= User.find(session[:user_id]).twitter_username %>"><button class="btn btn-primary">View/Post to My Tweets</button></a>
       <form action="/go_to_user" method="post">
           <input name="tweetUser" class="form-control" id="tweetUser" placeholder="Enter Username">
-        <button type="submit" class="btn btn-primary">Go</button>
+          <button type="submit" class="btn btn-primary">Go</button>
       </form>
       <% else%>
       <a href="/login"><button class="btn btn-primary">Log In</button></a>
