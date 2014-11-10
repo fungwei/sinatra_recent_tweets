@@ -51,6 +51,10 @@ require 'twitter'
 
 # CONSUMER_KEY = credentials["twitter_consumer_key"]
 # CONSUMER_SECRET = credentials["twitter_consumer_secret"]
+
+CONSUMER_KEY = ENV['CONSUMER_KEY'],
+CONSUMER_SECRET = ENV['CONSUMER_SECRET'],
+
 CALLBACK_URL = "http://local.fung.com:9393/oauth/callback"
 
 require 'oauth'
