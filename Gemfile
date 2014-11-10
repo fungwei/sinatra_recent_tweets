@@ -30,4 +30,4 @@ gem 'redis'
 group :test do
   gem 'faker'
   gem 'rspec'
-endbundle
+end
