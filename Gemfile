@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
+
 # PostgreSQL driver
 gem 'pg'
 
@@ -30,4 +32,4 @@ gem 'redis'
 group :test do
   gem 'faker'
   gem 'rspec'
-end
+endbundle
