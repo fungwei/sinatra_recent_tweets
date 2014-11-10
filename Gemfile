@@ -19,6 +19,10 @@ gem 'shotgun'
 
 gem 'twitter'
 
+gem 'oauth'
+
+gem 'rack-flash3'
+
 group :test do
   gem 'faker'
   gem 'rspec'

@@ -10,13 +10,11 @@ class TwitterUser < ActiveRecord::Base
         user
       end
     end
-
-
   end
 
-  def fetch_tweets!
+  def fetch_tweets!(twitter_client)
     self.tweets.destroy_all
-    TWITTER_CLIENT.user_timeline(self.username, count: 10).each do |pulled_tweet|
+    twitter_client.user_timeline(self.username, count: 10).each do |pulled_tweet|
       self.tweets.create(body: pulled_tweet.text)
     end
   end
@@ -27,8 +25,8 @@ class TwitterUser < ActiveRecord::Base
     time_diff > 60
   end
 
-  def new_tweet(body)
-    TWITTER_CLIENT.update(body)
+  def new_tweet(body,twitter_client)
+    twitter_client.update(body)
   end
 
 end

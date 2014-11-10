@@ -21,6 +21,8 @@ require "sinatra/reloader" if development?
 require 'erb'
 require 'yaml'
 
+require 'rack-flash'
+
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 
@@ -36,9 +38,15 @@ require APP_ROOT.join('config', 'database')
 #set up twitter
 require 'twitter'
 credentials = YAML.load(File.open("config/credentials.yml"))
-TWITTER_CLIENT = Twitter::REST::Client.new do |config|
-  config.consumer_key        = credentials["twitter_consumer_key"]
-  config.consumer_secret     = credentials["twitter_consumer_secret"]
-  config.access_token        = credentials["twitter_access_token"]
-  config.access_token_secret = credentials["twitter_access_token_secret"]
-end
+# TWITTER_CLIENT = Twitter::REST::Client.new do |config|
+#   config.consumer_key        = credentials["twitter_consumer_key"]
+#   config.consumer_secret     = credentials["twitter_consumer_secret"]
+#   config.access_token        = credentials["twitter_access_token"]
+#   config.access_token_secret = credentials["twitter_access_token_secret"]
+# end
+
+CONSUMER_KEY = credentials["twitter_consumer_key"]
+CONSUMER_SECRET = credentials["twitter_consumer_secret"]
+CALLBACK_URL = "http://local.fung.com:9393/oauth/callback"
+
+require 'oauth'

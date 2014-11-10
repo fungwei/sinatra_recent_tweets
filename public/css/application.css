@@ -1,8 +1,10 @@
+body { padding-top: 70px; }
+
 .container {
   margin: 20px auto;
-  width: 800px;
-  padding: 0px 20px 20px 20px;
+  width: 1000px;
 }
+
 th {
   text-align: left;
 }
@@ -13,4 +15,17 @@ th {
 
 #modal{
   text-align: center;
+}
+
+button{
+  display: inline;
+}
+
+form{
+  display: inline;
+}
+
+#tweetUser{
+  width: 200px;
+  display: inline;
 }

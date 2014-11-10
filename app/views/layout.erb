@@ -19,6 +19,25 @@
   <title></title>
 </head>
 <body>
-  <%= yield %>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <% if session[:user_id] != nil %>
+      <form action="/logout" method="post">
+        <input name="_method" value="delete" type="hidden">
+        <button type="submit" class="btn btn-primary">Log Out</button>
+      </form>
+      <a href="/tweets/<%= User.find(session[:user_id]).twitter_username %>"><button class="btn btn-primary">View/Post to My Tweets</button></a>
+      <form action="/go_to_user" method="post">
+          <input name="tweetUser" class="form-control" id="tweetUser" placeholder="Enter Username">
+        <button type="submit" class="btn btn-primary">Go</button>
+      </form>
+      <% else%>
+      <a href="/login"><button class="btn btn-primary">Log In</button></a>
+      <% end%>
+    </div>
+  </nav>
+  <div class="container">
+   <%= yield %>
+   </div>
 </body>
 </html>

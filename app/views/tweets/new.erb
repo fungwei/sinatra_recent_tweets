@@ -37,16 +37,18 @@
             });
           });
     </script>
-    <form id="post_tweet" role="form" action="<%= params[:username] %>" method="post">
-  <div class="form-group">
-    <label for="inputTweet">New Tweet</label>
-    <input name="tweet" type="tweet" class="form-control" id="inputTweet" placeholder="Enter Tweet">
-  </div>
-  <button type="submit" class="btn btn-default">Tweet!</button>
-  </form>
-<hr>
+    <% if @post_valid %>
+      <form id="post_tweet" role="form" action="<%= params[:username] %>" method="post">
+        <div class="form-group">
+          <label for="inputTweet">New Tweet</label>
+          <input name="tweet" type="tweet" class="form-control" id="inputTweet" placeholder="Enter Tweet">
+        </div>
+        <button type="submit" class="btn btn-default">Tweet!</button>
+      </form>
+    <% end %>
+    <hr>
      <div id="modal">
-            <img id="loader" src="ajax-loader.gif" />
+            <img id="loader" src="../ajax-loader.gif" />
      </div>
       <div id="results"></div>
 </div>
