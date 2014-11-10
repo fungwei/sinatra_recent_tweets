@@ -52,8 +52,8 @@ require 'twitter'
 # CONSUMER_KEY = credentials["twitter_consumer_key"]
 # CONSUMER_SECRET = credentials["twitter_consumer_secret"]
 
-CONSUMER_KEY = ENV['CONSUMER_KEY'],
-CONSUMER_SECRET = ENV['CONSUMER_SECRET'],
+CONSUMER_KEY = ENV['CONSUMER_KEY']
+CONSUMER_SECRET = ENV['CONSUMER_SECRET']
 
 CALLBACK_URL = "https://mighty-wildwood-1726.herokuapp.com/oauth/request_token"
 
