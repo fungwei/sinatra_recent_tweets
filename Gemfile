@@ -23,6 +23,10 @@ gem 'oauth'
 
 gem 'rack-flash3'
 
+gem 'sidekiq'
+
+gem 'redis'
+
 group :test do
   gem 'faker'
   gem 'rspec'
