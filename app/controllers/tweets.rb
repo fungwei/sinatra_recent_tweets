@@ -34,8 +34,9 @@ end
 post '/tweets/:username' do
   @user = TwitterUser.find_by_username(params[:username])
   logged_in_user = User.find(session[:user_id])
-  twitter_client = User.twitter_client(logged_in_user.oauth_token, logged_in_user.oauth_token_secret)
-  @user.new_tweet(params[:tweet], twitter_client)
+  # twitter_client = User.twitter_client(logged_in_user.oauth_token, logged_in_user.oauth_token_secret)
+  # @user.new_tweet(params[:tweet], twitter_client)
+  logged_in_user.tweet(params[:tweet])
   @user.fetch_tweets!(twitter_client)
   @tweets = @user.tweets
   erb :'tweets/show', :layout => false

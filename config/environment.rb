@@ -35,26 +35,30 @@ APP_NAME = APP_ROOT.basename.to_s
 # Set up the controllers and helpers
 Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
+Dir[APP_ROOT.join('app', 'workers', '*.rb')].each { |file| require file }
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
 
 #set up twitter
 require 'twitter'
-# credentials = YAML.load(File.open("config/credentials.yml"))
-# TWITTER_CLIENT = Twitter::REST::Client.new do |config|
-#   config.consumer_key        = credentials["twitter_consumer_key"]
-#   config.consumer_secret     = credentials["twitter_consumer_secret"]
-#   config.access_token        = credentials["twitter_access_token"]
-#   config.access_token_secret = credentials["twitter_access_token_secret"]
-# end
 
-# CONSUMER_KEY = credentials["twitter_consumer_key"]
-# CONSUMER_SECRET = credentials["twitter_consumer_secret"]
+if Sinatra::Application.development?
+  credentials = YAML.load(File.open("config/credentials.yml"))
+  # TWITTER_CLIENT = Twitter::REST::Client.new do |config|
+  #   config.consumer_key        = credentials["twitter_consumer_key"]
+  #   config.consumer_secret     = credentials["twitter_consumer_secret"]
+  #   config.access_token        = credentials["twitter_access_token"]
+  #   config.access_token_secret = credentials["twitter_access_token_secret"]
+  # end
+  CONSUMER_KEY = credentials["twitter_consumer_key"]
+  CONSUMER_SECRET = credentials["twitter_consumer_secret"]
+  CALLBACK_URL = "http://local.fung.com:9393/oauth/callback"
+else
+  CONSUMER_KEY = ENV['CONSUMER_KEY']
+  CONSUMER_SECRET = ENV['CONSUMER_SECRET']
+  CALLBACK_URL = "http://mighty-wildwood-1726.herokuapp.com/oauth/callback"
+end
 
-CONSUMER_KEY = ENV['CONSUMER_KEY']
-CONSUMER_SECRET = ENV['CONSUMER_SECRET']
-
-CALLBACK_URL = "http://mighty-wildwood-1726.herokuapp.com/oauth/callback"
 
 require 'oauth'

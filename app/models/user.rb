@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   # Remember to create a migration!
+  has_many :pending_tweets
 
   validates :username, uniqueness: true, presence: true
   validates :password, presence: true
@@ -22,5 +23,10 @@ class User < ActiveRecord::Base
 
       twitter_client
   end
+
+    def tweet(status)
+      tweet = self.pending_tweets.create!(body: status)
+      TweetWorker.perform_async(tweet.id)
+    end
 
 end

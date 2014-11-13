@@ -5,6 +5,14 @@ body { padding-top: 70px; }
   width: 1000px;
 }
 
+button{
+  display: inline;
+}
+
+form{
+  display: inline;
+}
+
 th {
   text-align: left;
 }
@@ -17,13 +25,7 @@ th {
   text-align: center;
 }
 
-button{
-  display: inline;
-}
 
-form{
-  display: inline;
-}
 
 #tweetUser{
   width: 200px;
